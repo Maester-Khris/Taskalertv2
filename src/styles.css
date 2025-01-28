@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Added */
+label.form-group {
+    padding: 3px 0px !important;
+  }
+
+  .form-group {
+    margin-bottom: 8px !important;
+  }
+
+  .modal-body {
+    padding: 8px 16px !important;
+  }
+
+  .modal-content {
+    margin-top: 50px;
+    height: 410px !important;
+  }
+
+  .form-passwod-group {
+    position: relative;
+  }
+
+  i.togglePassword {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 19px;
+    cursor: pointer;
+  }
+
+  label.form-group {
+    padding: 3px 0px !important;
+  }
+
+  .form-group {
+    margin-bottom: 8px !important;
+  }
+
+  .modal-body {
+    padding: 8px 16px !important;
+  }
+
+  .modal-content {
+    margin-top: 50px;
+    height: 410px !important;
+  }
+
+  .hide-modal {
+    animation: Slideout 500ms ease-in forwards;
+  }
+
+  .show-modal {
+    animation: Slidein 500ms ease-in forwards;
+  }
+
+  .imp {
+    text-decoration: underline;
+    font-weight: 300;
+  }
+
+  .carousel-item {
+    height: 400px;
+  }
+
+  .carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .carousel-item h5,
+  .carousel-item p {
+    color: black;
+    font-weight: bold;
+  }
+
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon,
+  .carousel-indicators {
+    filter: invert(100%);
+    font-weight: bold;
+  }
