@@ -1,2 +1,36 @@
 
-Home works
+
+<mat-form-field class="example-form-field" style="float: right; margin-top: 10px;width: 200px;">
+    <input matInput type="text" [(ngModel)]="value" placeholder="search your task ..." (input)="onFilterChange($event)" style="text-align: right;">
+    @if (value) {
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+</mat-form-field>
+<div style="clear: right;"></div>
+
+<table class="table table-bordered" style="">
+    <thead class="table-primary">
+        <tr>
+            <th scope="col" style="width: 5%!important;">#</th>
+            <th scope="col" style="width: 25%!important;">Task title</th>
+            <th scope="col" style="width: 15%!important;">Task editor(s)</th>
+            <th scope="col" style="width: 35%!important;">Task description</th>
+            <th scope="col" style="width: 10%!important;">Creation time</th>
+            <th scope="col" style="width: 10%!important;">Last modification</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for(task of filteredItems$ | async; track task.id){
+            <tr>
+                <th scope="row">{{task.id}}</th>
+                <td>{{task.title}}</td>
+                <td>{{task.editor}}</td>
+                <td>{{task.description}}</td> 
+                <td>{{task.creation_time}}</td>
+                <td>{{task.last_modification_time}}</td>
+            </tr>
+        }   
+    </tbody>
+  </table>

@@ -1,0 +1,17 @@
+td{
+    padding-top: 12px!important;
+    padding-bottom: 12px!important;
+    vertical-align: middle;
+}
+
+::ng-deep .custom-form-field {
+    background-color: lightblue!important; 
+}
+  
+::ng-deep .custom-form-field .mat-form-field-underline {
+    background-color: darkblue!important; 
+}
+  
+::ng-deep .custom-form-field .mat-input-element {
+    color: white; 
+}
