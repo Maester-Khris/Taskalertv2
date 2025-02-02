@@ -5,8 +5,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of} from 'rxjs';
 import { map } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -16,7 +18,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  value = '';
 
   tasks:any[] = [{
     "id": 1,
@@ -90,28 +91,35 @@ export class HomeComponent {
     "last_modification_time": "2024-03-31"
   }];
 
-  private filterSubject = new BehaviorSubject<string>('');
-  filteredItems$?: Observable<any[]>;
+  searchTerm = '';
+  filteredItems$: Observable<any[]>;
 
   constructor() {
-    this.filteredItems$ = this.filterSubject.pipe(
-      map(filterText => this.filterItems(filterText))
+    this.filteredItems$ = of(this.tasks).pipe(
+      switchMap(items => this.filterItems(items))
     );
   }
 
-  filterItems(filterText: string): any[] {
-    if (!filterText) {
-      return this.tasks;
-    }
-    const lowerCaseFilter = filterText.toLowerCase();
-    return this.tasks.filter(item =>
-      item.name.toLowerCase().includes(lowerCaseFilter) ||
-      item.description.toLowerCase().includes(lowerCaseFilter)
+  filterItems(items: any[]): Observable<any[]> {
+    const searchTerm = this.searchTerm.toLowerCase();
+    return of(items.filter(
+      (item:any) => 
+        item.title.toLowerCase().includes(searchTerm) || 
+        item.description.toLowerCase().includes(searchTerm)
+    ));
+  }
+
+  onFilterChange(){
+    this.filteredItems$ = of(this.tasks).pipe(
+      switchMap(items => this.filterItems(items))
     );
   }
 
-  onFilterChange(event:Event): void {
-    const input = event.target as HTMLInputElement; // Cast to HTMLInputElement
-    this.filterSubject.next(input.value);
+  emptyFilter(){
+    this.searchTerm='';
+    this.filteredItems$ = of(this.tasks).pipe(
+      switchMap(items => this.filterItems(items))
+    );
   }
+  
 }

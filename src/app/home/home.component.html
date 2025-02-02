@@ -1,9 +1,10 @@
 
+<!--  -->
 
 <mat-form-field class="example-form-field" style="float: right; margin-top: 10px;width: 200px;">
-    <input matInput type="text" [(ngModel)]="value" placeholder="search your task ..." (input)="onFilterChange($event)" style="text-align: right;">
-    @if (value) {
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+    <input matInput type="text" [(ngModel)]="searchTerm" (input)="onFilterChange()" placeholder="search your task ..."  style="text-align: right;">
+    @if (searchTerm) {
+      <button matSuffix mat-icon-button aria-label="Clear" (click)="emptyFilter()">
         <mat-icon>close</mat-icon>
       </button>
     }
@@ -13,12 +14,12 @@
 <table class="table table-bordered" style="">
     <thead class="table-primary">
         <tr>
-            <th scope="col" style="width: 5%!important;">#</th>
-            <th scope="col" style="width: 25%!important;">Task title</th>
-            <th scope="col" style="width: 15%!important;">Task editor(s)</th>
-            <th scope="col" style="width: 35%!important;">Task description</th>
-            <th scope="col" style="width: 10%!important;">Creation time</th>
-            <th scope="col" style="width: 10%!important;">Last modification</th>
+            <th scope="col" style="width: 7%!important;">#</th>
+            <th scope="col" style="width: 20%!important;">Task title</th>
+            <th scope="col" style="width: 18%!important;">Task editor(s)</th>
+            <th scope="col" style="width: 25%!important;">Task description</th>
+            <th scope="col" style="width: 15%!important;">Creation time</th>
+            <th scope="col" style="width: 15%!important;">Last update</th>
         </tr>
     </thead>
     <tbody>
@@ -27,7 +28,7 @@
                 <th scope="row">{{task.id}}</th>
                 <td>{{task.title}}</td>
                 <td>{{task.editor}}</td>
-                <td>{{task.description}}</td> 
+                <td>{{(task.description.length>30)? (task.description | slice:0:30)+'...':(task.description)}}</td> 
                 <td>{{task.creation_time}}</td>
                 <td>{{task.last_modification_time}}</td>
             </tr>
