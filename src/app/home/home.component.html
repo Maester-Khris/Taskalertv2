@@ -1,37 +1,19 @@
+<div class="skill-section-header" style="margin-top: 30px;">
+    <h3>Project "Taskalert v2" Overview</h3>
+    <div class="title-border"></div>
+  </div>
+  <p class="leading">
+    The "Taskalert" project is a real-time notes reminder application developed using the MEAN stack (MongoDB, NodeJS, Express, Angular) and Angular Material 3. The application utilizes PusherJS for dynamic push notifications, thereby enhancing user engagement and productivity.
+  </p>
+  <p style="margin-bottom: 5px;">Following are some keypoints that has been focused on:</p>
+  <ul style="">
+    <li>Real-time Notes Reminder Application</li>
+    <li>Robust and Scalable Architecture</li>
+    <li>Message Broker Service</li>
+    <li>Collaborative Task editing</li>
+    <li>Task Filtering</li>
+  </ul>
 
-<!--  -->
-
-<mat-form-field class="example-form-field" style="float: right; margin-top: 10px;width: 200px;">
-    <input matInput type="text" [(ngModel)]="searchTerm" (input)="onFilterChange()" placeholder="search your task ..."  style="text-align: right;">
-    @if (searchTerm) {
-      <button matSuffix mat-icon-button aria-label="Clear" (click)="emptyFilter()">
-        <mat-icon>close</mat-icon>
-      </button>
-    }
-</mat-form-field>
-<div style="clear: right;"></div>
-
-<table class="table table-bordered" style="">
-    <thead class="table-primary">
-        <tr>
-            <th scope="col" style="width: 7%!important;">#</th>
-            <th scope="col" style="width: 20%!important;">Task title</th>
-            <th scope="col" style="width: 18%!important;">Task editor(s)</th>
-            <th scope="col" style="width: 25%!important;">Task description</th>
-            <th scope="col" style="width: 15%!important;">Creation time</th>
-            <th scope="col" style="width: 15%!important;">Last update</th>
-        </tr>
-    </thead>
-    <tbody>
-        @for(task of filteredItems$ | async; track task.id){
-            <tr>
-                <th scope="row">{{task.id}}</th>
-                <td>{{task.title}}</td>
-                <td>{{task.editor}}</td>
-                <td>{{(task.description.length>30)? (task.description | slice:0:30)+'...':(task.description)}}</td> 
-                <td>{{task.creation_time}}</td>
-                <td>{{task.last_modification_time}}</td>
-            </tr>
-        }   
-    </tbody>
-  </table>
+ <p>
+  The "Taskalert" project offers an innovative solution for managing notes reminders, integrating modern technologies and agile development practices. With a scalable architecture and effective interservice communication, the application ensures a smooth and interactive user experience while maintaining security and performance.
+ </p>

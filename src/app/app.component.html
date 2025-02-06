@@ -11,9 +11,18 @@
     </div>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb" style="position: relative;">
-        <li class="breadcrumb-item active" aria-current="page"><a routerLink="/"> Home</a></li>
-        <li class="breadcrumb-item"><a routerLink="/votes"> Skill stats</a></li>
-        <li class="breadcrumb-item"><a routerLink="/myskills"> Give your rating</a></li>
+        <li class="breadcrumb-item" [class.active]="isActive('/')">
+          <a routerLink="/"> <i class="ph-fill ph-house-line"></i> Home</a>
+        </li>
+        <li class="breadcrumb-item" [class.active]="isActive('/tasks')">
+          <a routerLink="/tasks"> <i class="ph ph-clipboard-text"></i> My Tasks</a>
+        </li>
+        <li class="breadcrumb-item" [class.active]="isActive('/reminders')">
+          <a routerLink="/reminders"> <i class="ph ph-bell-simple-ringing"></i> Reminders</a>
+        </li>
+        <li class="breadcrumb-item" [class.active]="isActive('/collab')">
+          <a routerLink="/collab"> <i class="ph ph-coffee"></i> Collab</a>
+        </li>
         <li class="breadcrumb-item"><a href="https://nkml.pythonanywhere.com/api/schema/swagger-ui/" target="_blank" style="position:absolute;right:10px;"><i class="ph-fill ph-arrow-square-out"></i>API documentation</a></li>
       </ol>
     </nav>

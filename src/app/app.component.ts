@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,11 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ngMaterialCrud';
+  title = 'Task alert Material';
+
+  constructor(private router: Router) {}
+
+  isActive(route: string): boolean {
+    return this.router.url === route;
+  }
 }

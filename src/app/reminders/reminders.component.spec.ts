@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MyskillsComponent } from './myskills.component';
+import { RemindersComponent } from './reminders.component';
 
-describe('MyskillsComponent', () => {
-  let component: MyskillsComponent;
-  let fixture: ComponentFixture<MyskillsComponent>;
+describe('RemindersComponent', () => {
+  let component: RemindersComponent;
+  let fixture: ComponentFixture<RemindersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MyskillsComponent]
+      imports: [RemindersComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MyskillsComponent);
+    fixture = TestBed.createComponent(RemindersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
