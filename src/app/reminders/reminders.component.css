@@ -1,0 +1,53 @@
+.reminder-wrapper{
+    padding: 10px 0px;
+    display: flex;
+    justify-content: start;
+}
+.reminder-object{
+    height: 150px;
+    width: 150px;
+    background-color: #FBCEB1;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 25px;
+    margin-right: 10px;
+}
+.reminder-add-btn:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+.reminder-add-btn{
+    background-color: #4b9dbd!important;
+}
+mat-icon{
+    margin-bottom: 10px;
+    font-size: 30px!important;
+    width: 30px!important;
+    height: 30px!important; 
+}
+.badge{
+   display: inline-block; /* Ensure the badge behaves like an inline element */
+   width: 150px;
+   overflow-wrap: break-word; /* Allow breaking of long words */
+   word-wrap: break-word; /* For older browsers */
+   white-space: normal; /* Allow wrapping */
+   font-size: 15px;
+   padding: 5px 3px;
+   line-height: 1.2rem;
+   color: #36454F;
+   /* background-color: transparent!important; */
+}
+.alarm-time{
+    border-radius:5px;
+    background-color: #4b9dbd;
+    color: white;
+    padding: 3px 6px;
+    text-align: center;
+    font-size: 12px;
+}
+.alarm-title{
+    background-color: transparent!important;
+}

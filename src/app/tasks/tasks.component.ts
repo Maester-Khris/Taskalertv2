@@ -12,9 +12,14 @@ import { map } from 'rxjs/operators';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
+
+import { TaskFormComponent } from './task-form/task-form.component';
+import { TaskListComponent } from './task-list/task-list.component';
+
+
 @Component({
   selector: 'app-tasks',
-  imports: [MatFormFieldModule, MatInputModule, MatCheckboxModule,MatSelectModule, MatButtonModule, MatIconModule, FormsModule, CommonModule],
+  imports: [TaskFormComponent, TaskListComponent, MatFormFieldModule, MatInputModule, MatCheckboxModule,MatSelectModule, MatButtonModule, MatIconModule, FormsModule, CommonModule],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
@@ -22,77 +27,111 @@ export class TasksComponent {
   action_selected = '';
   is_any_task_selected = false;
 
-  tasks:any[] = [{
-    "id": 1,
-    "title": "Mat Lam Tam",
-    "editor": "dliff0",
-    "description": "nisl duis ac nibh fusce lacus purus aliquet at",
-    "creation_time": "2024-02-28",
-    "last_modification_time": "2024-03-14"
-  }, {
-    "id": 2,
-    "title": "Lotlux",
-    "editor": "nheaysman1",
-    "description": "erat fermentum justo nec condimentum neque sapien",
-    "creation_time": "2024-09-19",
-    "last_modification_time": "2024-11-10"
-  }, {
-    "id": 3,
-    "title": "Kanlam",
-    "editor": "tphilippart2",
-    "description": "urna ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla",
-    "creation_time": "2024-04-30",
-    "last_modification_time": "2024-02-23"
-  }, {
-    "id": 4,
-    "title": "It",
-    "editor": "yodell3",
-    "description": "neque sapien placerat ante nulla justo aliquam quis turpis eget elit sodales scelerisque",
-    "creation_time": "2024-12-15",
-    "last_modification_time": "2024-08-09"
-  }, {
-    "id": 5,
-    "title": "Cardguard",
-    "editor": "bdacosta4",
-    "description": "lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede",
-    "creation_time": "2024-08-23",
-    "last_modification_time": "2024-08-01"
-  }, {
-    "id": 6,
-    "title": "Hatity",
-    "editor": "bakroyd5",
-    "description": "in congue etiam justo etiam pretium iaculis justo in hac habitasse platea",
-    "creation_time": "2024-08-31",
-    "last_modification_time": "2025-01-23"
-  }, {
-    "id": 7,
-    "title": "Y-find",
-    "editor": "ptytterton6",
-    "description": "vitae nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a",
-    "creation_time": "2024-10-11",
-    "last_modification_time": "2024-02-29"
-  }, {
-    "id": 8,
-    "title": "Biodex",
-    "editor": "jchelnam7",
-    "description": "in sagittis dui vel nisl duis ac nibh fusce lacus purus aliquet at",
-    "creation_time": "2025-01-10",
-    "last_modification_time": "2024-07-10"
-  }, {
-    "id": 9,
-    "title": "Veribet",
-    "editor": "wcervantes8",
-    "description": "in hac habitasse platea dictumst maecenas",
-    "creation_time": "2024-10-07",
-    "last_modification_time": "2024-03-24"
-  }, {
-    "id": 10,
-    "title": "Otcom",
-    "editor": "rfasler9",
-    "description": "ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem",
-    "creation_time": "2024-05-19",
-    "last_modification_time": "2024-03-31"
-  }];
+  tasks:any[]= [
+    {
+        "id": 1,
+        "title": "Implement User Authentication",
+        "group": ["Development"],
+        "description": "Develop a secure user authentication system using JWT.",
+        "items": ["User model", "Login API", "Register API", "Password reset functionality"],
+        "editors": ["Alice", "Bob"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 2,
+        "title": "Design Database Schema",
+        "group": ["Database Design"],
+        "description": "Create a comprehensive database schema for the application.",
+        "items": ["ER Diagram", "Normalization", "Schema documentation"],
+        "editors": ["Bob", "Charlie"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 3,
+        "title": "Develop API Endpoints",
+        "group": ["Development"],
+        "description": "Implement RESTful API endpoints for the application.",
+        "items": ["GET /tasks", "POST /tasks", "PUT /tasks/{id}", "DELETE /tasks/{id}"],
+        "editors": ["Charlie", "Diana"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 4,
+        "title": "Create Frontend Components",
+        "group": ["Development"],
+        "description": "Build reusable React components for the user interface.",
+        "items": ["Header component", "Footer component", "Task list component"],
+        "editors": ["Diana", "Eve"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 5,
+        "title": "Write Unit Tests",
+        "group": ["Quality Assurance"],
+        "description": "Develop unit tests for critical functions and components.",
+        "items": ["User authentication tests", "API response tests", "Component rendering tests"],
+        "editors": ["Alice", "Eve"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 6,
+        "title": "Conduct Code Review",
+        "group": ["Quality Assurance"],
+        "description": "Review pull requests for code quality and adherence to standards.",
+        "items": ["Review PR #101", "Review PR #102", "Provide feedback"],
+        "editors": ["Alice", "Bob"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 7,
+        "title": "Set Up CI/CD Pipeline",
+        "group": ["DevOps"],
+        "description": "Implement a continuous integration and deployment pipeline.",
+        "items": ["Configure GitHub Actions", "Set up testing environment", "Deploy to staging"],
+        "editors": ["Bob", "Diana"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 8,
+        "title": "Prepare User Documentation",
+        "group": ["Documentation"],
+        "description": "Create user documentation for the application features.",
+        "items": ["User guide", "API documentation", "FAQ section"],
+        "editors": ["Charlie", "Eve"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 9,
+        "title": "Fix Bugs in Production",
+        "group": ["Maintenance"],
+        "description": "Identify and resolve bugs reported by users in the production environment.",
+        "items": ["Bug #201", "Bug #202", "Bug #203"],
+        "editors": ["Alice", "Charlie"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    },
+    {
+        "id": 10,
+        "title": "Plan Next Sprint",
+        "group": ["Project Management"],
+        "description": "Organize and plan tasks for the upcoming sprint.",
+        "items": ["Define sprint goals", "Prioritize backlog", "Assign tasks"],
+        "editors": ["Diana", "Eve"],
+        "created_at": "2025-02-08T12:00:00Z",
+        "last_modification_time": null
+    }
+];
+
+
+
   tasks_items:any[] = [];
   
   searchTerm = '';

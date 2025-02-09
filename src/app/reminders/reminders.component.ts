@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-reminders',
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './reminders.component.html',
   styleUrl: './reminders.component.css'
 })
