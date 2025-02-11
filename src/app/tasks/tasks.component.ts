@@ -1,32 +1,15 @@
 import { Component } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {FormsModule} from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { BehaviorSubject, Observable, of} from 'rxjs';
-import { map } from 'rxjs/operators';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
-
-
 import { TaskFormComponent } from './task-form/task-form.component';
 import { TaskListComponent } from './task-list/task-list.component';
 
 
 @Component({
   selector: 'app-tasks',
-  imports: [TaskFormComponent, TaskListComponent, MatFormFieldModule, MatInputModule, MatCheckboxModule,MatSelectModule, MatButtonModule, MatIconModule, FormsModule, CommonModule],
+  imports: [TaskFormComponent, TaskListComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  action_selected = '';
-  is_any_task_selected = false;
-
   tasks:any[]= [
     {
         "id": 1,
@@ -130,49 +113,5 @@ export class TasksComponent {
     }
 ];
 
-
-
-  tasks_items:any[] = [];
-  
-  searchTerm = '';
-  filteredItems$: Observable<any[]>;
-
-  constructor() {
-    this.filteredItems$ = of(this.tasks_items).pipe(
-      switchMap(items => this.filterItems(items))
-    );
-    for(let t of this.tasks){
-      this.tasks_items.push( {...t, checked:false})
-    }
-  }
-
-  filterItems(items: any[]): Observable<any[]> {
-    const searchTerm = this.searchTerm.toLowerCase();
-    return of(items.filter(
-      (item:any) => 
-        item.title.toLowerCase().includes(searchTerm) || 
-        item.description.toLowerCase().includes(searchTerm)
-    ));
-  }
-
-  onFilterChange(){
-    this.filteredItems$ = of(this.tasks_items).pipe(
-      switchMap(items => this.filterItems(items))
-    );
-  }
-
-  emptyFilter(){
-    this.searchTerm='';
-    this.filteredItems$ = of(this.tasks_items).pipe(
-      switchMap(items => this.filterItems(items))
-    );
-  }
-
-  onCheckboxChange(event: any, task:any) {
-    console.log('Checkbox checked:', event.checked);
-    task.checked = event.checked;
-    console.log(this.tasks_items.some(task => task.checked == true));
-    this.is_any_task_selected = this.tasks_items.some(task => task.checked == true)
-  }
   
 }
