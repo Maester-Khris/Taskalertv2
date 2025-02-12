@@ -10,8 +10,52 @@
 }
 .note-creation-section{
     
-
 }
 .note-additional{
-    border: 1px solid black;
+    
+}
+.form-comp-header{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+    margin-top: 25px;
+}
+.form-comp-header h3{
+    font-weight: bold;
+    font-size: 24px;
+}
+label{
+    font-size: 17px;
+}
+input{
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: lightgray;
+    border-color: black;
+    height: 44px;
+}
+.additonal-btn{
+    height: 44px;
+    width: 126px;
+}
+.additional-comp{
+    display: flex;
+    justify-content: space-between;
+}
+.added-elts{
+    
+}
+.elts-container{
+    padding-left: 0px;
+    border-radius: 14px;
+    width: 45px;
+}
+.elt-ico{
+    display: flex;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    background-color: gray;
+    margin-left: 4px;
 }

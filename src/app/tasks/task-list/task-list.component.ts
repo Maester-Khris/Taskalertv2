@@ -21,6 +21,8 @@ import { CommonModule } from '@angular/common';
 })
 export class TaskListComponent implements OnInit {
   @Input() tasks: any[] = []; 
+  @Output() editTask = new EventEmitter<{}>();
+  @Output() dropTask = new EventEmitter<{}>();
 
   tasks_items:any[] = [];
   action_selected = '';
@@ -69,5 +71,24 @@ export class TaskListComponent implements OnInit {
     task.checked = event.checked;
     console.log(this.tasks_items.some(task => task.checked == true));
     this.is_any_task_selected = this.tasks_items.some(task => task.checked == true)
+  }
+
+  // ======= Task action method =======
+  newTask(){
+    let task:any = {};
+    this.editTask.emit(task);
+  }
+  showTaskDetail(){
+
+  }
+  editTaskObj(){
+    let stask = this.tasks_items.filter(t => t.checked ==true)[0];
+    let task_to_edit = this.tasks.filter(t =>t.id == stask.id)[0];
+    this.editTask.emit(task_to_edit);
+  }
+  deleteTaskObj(){
+    let stask = this.tasks_items.filter(t => t.checked ==true)[0];
+    let task_to_delete = this.tasks.filter(t =>t.id == stask.id)[0];
+    this.dropTask.emit(task_to_delete);
   }
 }
