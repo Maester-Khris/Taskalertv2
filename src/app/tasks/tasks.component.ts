@@ -126,7 +126,8 @@ export class TasksComponent {
     }
     dropSelectedTask(task_to_delete:any){
         console.log(task_to_delete);
-        this.tasks.splice(this.tasks.indexOf(task_to_delete), 1);
+        //this.tasks.splice(this.tasks.indexOf(task_to_delete), 1);
+        this.tasks = this.tasks.filter(t=>t.id !== task_to_delete.id);
         console.log(this.tasks);
     }
     closeTaskForm(){

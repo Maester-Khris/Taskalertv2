@@ -11,15 +11,32 @@
           <input type="text" class="form-control" id="exampleInputEmail1" placeholder="create new githug public repository" value="{{taskObj.title}}">
         </div>
         <div>
-            <label for="exampleInputPassword1" class="form-label">Write the content of your note</label>
-            <textarea class="note_editable_section" name="" id="" value="{{taskObj.description}}"></textarea>
+            <div class="d-flex justify-content-between">
+                <label for="exampleInputPassword1" class="form-label">Write the content of your note</label>
+                <div class="form-check d-flexbox ">
+                    <label class="form-check-label" for="exampleCheck1">I prefer checkbox items</label>
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" (click)="switchToItems()">
+                  </div>
+            </div>
+            <div *ngIf="dopreferItem" class="row g-3 flex-column" style="margin-bottom: 20px;">
+                <div class="col-5" *ngFor="let item of actualItems">
+                  <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="new todolist" [value]="item" >
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-secondary additonal-btn" (click)="addItem()">
+                        <i class="ph ph-check-square" style="font-size: 20px;"></i> add item
+                    </button>
+                </div>
+            </div>
+            <textarea *ngIf="!dopreferItem" class="note_editable_section" name="" id="" value="{{taskObj.description}}"></textarea>
         </div>
+
         <div class="note-additional">
             <label for="exampleInputPassword1" class="form-label">Add some co-editor</label>
            
             <div class="row g-3 align-items-center" style="margin-bottom: 20px;">
                 <div class="col-6">
-                  <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="@kml, ...">
+                  <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="@kml, ...">
                 </div>
                 <div class="col-auto">
                     <button type="button" class="btn btn-secondary additonal-btn">
@@ -32,7 +49,7 @@
             <label for="exampleInputPassword1" class="form-label">Add a group tag to your task</label>
             <div class="row g-3 align-items-center" style="margin-bottom: 20px;">
                 <div class="col-6">
-                  <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Work, Personnal, ...">
+                  <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Work, Personnal, ...">
                 </div>
                 <div class="col-auto">
                     <button type="button" class="btn btn-secondary additonal-btn">

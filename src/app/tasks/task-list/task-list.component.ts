@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
@@ -19,7 +19,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
 })
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnChanges {
   @Input() tasks: any[] = []; 
   @Output() editTask = new EventEmitter<{}>();
   @Output() dropTask = new EventEmitter<{}>();
@@ -33,15 +33,19 @@ export class TaskListComponent implements OnInit {
 
   constructor() {  }
 
-  ngOnInit() {
-    console.log("received from child");
-    console.log(this.tasks); // This should now return the populated array
+  initAsyncTaskList(tasks:any[]){
+    this.tasks_items = [];
+    for(let t of tasks){
+      this.tasks_items.push( {...t, checked:false})
+    }
     this.filteredItems$ = of(this.tasks_items).pipe(
       switchMap(items => this.filterItems(items))
     );
-    for(let t of this.tasks){
-      this.tasks_items.push( {...t, checked:false})
-    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("detected changes");
+    this.initAsyncTaskList(changes['tasks'].currentValue);
   }
 
   filterItems(items: any[]): Observable<any[]> {
@@ -50,7 +54,8 @@ export class TaskListComponent implements OnInit {
       (item:any) => 
         item.title.toLowerCase().includes(searchTerm) || 
         item.description.toLowerCase().includes(searchTerm)
-    ));
+      )
+    );
   }
 
   onFilterChange(){
@@ -89,6 +94,8 @@ export class TaskListComponent implements OnInit {
   deleteTaskObj(){
     let stask = this.tasks_items.filter(t => t.checked ==true)[0];
     let task_to_delete = this.tasks.filter(t =>t.id == stask.id)[0];
+    this.is_any_task_selected=false;
     this.dropTask.emit(task_to_delete);
+    
   }
 }
